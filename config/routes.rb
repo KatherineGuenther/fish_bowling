@@ -7,5 +7,6 @@ Rails.application.routes.draw do
       post 'join'
     end
   end
+  mount ActionCable.server => '/cable'
 
 end
