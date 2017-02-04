@@ -26,7 +26,6 @@ $( document ).ready(function() {
     $.ajax({
       url: '/games/join',
       method: 'POST'
-      // data: { channel: App.game }
       // success: function(result) {
       //   alert(result)
       // }
