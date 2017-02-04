@@ -7,7 +7,11 @@ App.game = App.cable.subscriptions.create("GameChannel", {
     // Called when the subscription has been terminated by the server
   },
 
-  received: function(data) {
+  received: function(message) {
     // Called when there's incoming data on the websocket for this channel
+  },
+
+  speak: (message) {
+    @perform 'speak', message
   }
 });
