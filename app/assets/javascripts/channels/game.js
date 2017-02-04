@@ -1,17 +1,26 @@
-App.game = App.cable.subscriptions.create("GameChannel", {
-  connected: function() {
-    // Called when the subscription is ready for use on the server
-  },
+$( document ).ready(function() {
+  App.game = App.cable.subscriptions.create("GameChannel", {
+    speak: function(message) {
+      this.perform('speak', message )
+    },
 
-  disconnected: function() {
-    // Called when the subscription has been terminated by the server
-  },
+    connected: function() {
+      // Called when the subscription is ready for use on the server
+      console.log('Player connected')
+      this.speak('Howdy!')
+      console.log('Sent a howdy')
+    },
 
-  received: function(message) {
-    // Called when there's incoming data on the websocket for this channel
-  },
+    disconnected: function() {
+      // Called when the subscription has been terminated by the server
+      console.log('Player disconnected')
+    },
 
-  speak: (message) {
-    @perform 'speak', message
-  }
+    received: function(message) {
+        // Called when there's incoming data on the websocket for this channel
+        alert(message)
+    }
+  });
 });
+
+

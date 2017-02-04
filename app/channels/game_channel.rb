@@ -7,7 +7,11 @@ class GameChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 
-  def speak(data)
-    ActionCable.server.broadcast "game_channel", data
+  def speak(message)
+    p "******************************************"
+    p message
+    p message[:identifier]
+    p message[:data]
+    ActionCable.server.broadcast("game_channel", message[:data])
   end
 end
