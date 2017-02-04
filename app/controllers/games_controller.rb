@@ -18,9 +18,13 @@ class GamesController < ApplicationController
   end
 
   def join
-    return redirect_to root_path, notice: 'That game has not been created' unless @game
-    @game.participants << current_user unless @game.participants.exists?(current_user)
-    redirect_to @game
+    p "In join: @game:"
+    p @game
+    # return redirect_to root_path, notice: 'That game has not been created' unless @game
+    # @game.participants << current_user unless @game.participants.exists?(current_user)
+    channel = GameChannel.new
+    channel.speak('Seeing the joined a game view')
+    # redirect_to @game
   end
 
   private
