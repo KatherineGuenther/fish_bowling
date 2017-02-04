@@ -1,14 +1,7 @@
 $( document ).ready(function() {
   App.game = App.cable.subscriptions.create("GameChannel", {
-    speak: function(message) {
-      this.perform('speak', message )
-    },
-
     connected: function() {
       // Called when the subscription is ready for use on the server
-      console.log('Player connected')
-      this.speak('Howdy!')
-      console.log('Sent a howdy')
     },
 
     disconnected: function() {
@@ -19,6 +12,10 @@ $( document ).ready(function() {
     received: function(message) {
         // Called when there's incoming data on the websocket for this channel
         alert(message)
+    },
+
+    speak: function(message) {
+      this.perform('speak', { message: message })
     }
   });
 });
