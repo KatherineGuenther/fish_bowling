@@ -1,7 +1,8 @@
 $( document ).ready(function() {
   App.game = App.cable.subscriptions.create("GameChannel", {
     connected: function() {
-      // Called when the subscription is ready for use on the server
+      // Called when the subscription is ready for use on the server      
+      this.perform('speak', { message: 'Hello world' })
     },
 
     disconnected: function() {
