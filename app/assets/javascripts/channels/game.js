@@ -2,6 +2,7 @@ $( document ).ready(function() {
   App.game = App.cable.subscriptions.create("GameChannel", {
     connected: function() {
       // Called when the subscription is ready for use on the server
+      console.log('Player connected')
       // this.perform('speak', { message: 'Hello world' })
     },
 
@@ -13,6 +14,8 @@ $( document ).ready(function() {
     received: function(message) {
       // Called when there's incoming data on the websocket for this channel
       alert(message['message'])
+      console.log(message['message'])
+      $('body').append(message['message'])
     },
 
     speak: function(message) {
@@ -20,15 +23,14 @@ $( document ).ready(function() {
     }
   });
 
-  $('#join-game-form').on('submit', function(event) {
+  $('#new_game').on('submit', function(event) {
     event.preventDefault()
-    alert('Listening on join game')
+    alert('Listening on new game')
+    var name = $('#new_game').serialize()
     $.ajax({
-      url: '/games/join',
-      method: 'POST'
-      // success: function(result) {
-      //   alert(result)
-      // }
+      url: '/games',
+      method: 'POST',
+      data: {game: {name: name} }
     })
   })
 });
