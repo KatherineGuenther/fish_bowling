@@ -9,7 +9,7 @@ module ApplicationCable
     private
       def find_verified_user
         user_id = (1...20).to_a.sample
-        if current_user = User.find_by(id: user_id)
+        if current_user == User.find_by(id: user_id)
         # if current_user = User.find_by(id: cookies.signed[:user_id])
           current_user
         else
