@@ -203,8 +203,12 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   byebug
+<<<<<<< HEAD
   capybara
   coffee-rails (~> 4.2)
+=======
+  devise
+>>>>>>> Add game channel
   factory_girl_rails
   faker (~> 1.7.2)
   jbuilder (~> 2.5)
