@@ -15,6 +15,7 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find_by(name: params[:name])
+    ActionCable.server.broadcast('game_channel', message: data['dummy'])
   end
 
   def join
