@@ -2,6 +2,13 @@ $(document).on('turbolinks:load', function() {
   addEventListeners();
 });
 
+function preventDoubleClick(clickable) {
+  if ($(clickable).hasClass('clicked')) return;
+  $(clickable).addClass('clicked');
+  setTimeout(function() { $(clickable).removeClass('clicked'); }, 1000);
+}
+
+
 function addEventListeners(){
   createActionListener();
   gameActionListener();
@@ -12,6 +19,7 @@ function addSubscriptionListener() {
   $('main').on('submit', '.subscription-form', function(event) {
     event.preventDefault();
     var name = $(event.target).find('input[type=text]').val()
+    preventDoubleClick(event.target)
 
     if (App.cable.subscriptions['subscriptions'].length > 1) {
       App.cable.subscriptions.remove(App.cable.subscriptions['subscriptions'][1])
